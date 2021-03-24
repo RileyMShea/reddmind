@@ -1,4 +1,4 @@
-""" View: Movie listers module."""
+"""Movie writers module."""
 
 from reddmind.entities import Movie
 from typing import List

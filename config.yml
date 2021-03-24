@@ -5,3 +5,6 @@ finder:
 
   sqlite:
     path: 'data/movies.db'
+
+  orm_sqlite:
+    path: 'data/movies.db'

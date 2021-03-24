@@ -481,7 +481,7 @@ gitdb = ">=4.0.1,<5"
 name = "greenlet"
 version = "1.0.0"
 description = "Lightweight in-process concurrent programming"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 
@@ -732,6 +732,21 @@ Pygments = ">=1.6"
 sqlparse = "*"
 
 [[package]]
+name = "loguru"
+version = "0.5.3"
+description = "Python logging made (stupidly) simple"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+colorama = {version = ">=0.3.4", markers = "sys_platform == \"win32\""}
+win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
+
+[package.extras]
+dev = ["codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "tox (>=3.9.0)", "tox-travis (>=0.12)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "Sphinx (>=2.2.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "black (>=19.10b0)", "isort (>=5.1.1)"]
+
+[[package]]
 name = "markupsafe"
 version = "1.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -767,7 +782,7 @@ python-versions = "*"
 name = "mypy"
 version = "0.812"
 description = "Optional static typing for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -1360,6 +1375,61 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "sqlalchemy"
+version = "1.4.2"
+description = "Database Abstraction Library"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7"
+
+[package.dependencies]
+greenlet = {version = "!=0.4.17", markers = "python_version >= \"3\""}
+mypy = {version = ">=0.800", optional = true, markers = "python_version >= \"3\" and extra == \"mypy\""}
+sqlalchemy2-stubs = {version = "*", optional = true, markers = "extra == \"mypy\""}
+
+[package.extras]
+aiomysql = ["greenlet (!=0.4.17)", "aiomysql"]
+asyncio = ["greenlet (!=0.4.17)"]
+mariadb_connector = ["mariadb (>=1.0.1)"]
+mssql = ["pyodbc"]
+mssql_pymssql = ["pymssql"]
+mssql_pyodbc = ["pyodbc"]
+mypy = ["sqlalchemy2-stubs", "mypy (>=0.800)"]
+mysql = ["mysqlclient (>=1.4.0,<2)", "mysqlclient (>=1.4.0)"]
+mysql_connector = ["mysqlconnector"]
+oracle = ["cx_oracle (>=7,<8)", "cx_oracle (>=7)"]
+postgresql = ["psycopg2 (>=2.7)"]
+postgresql_asyncpg = ["greenlet (!=0.4.17)", "asyncpg"]
+postgresql_pg8000 = ["pg8000 (>=1.16.6)"]
+postgresql_psycopg2binary = ["psycopg2-binary"]
+postgresql_psycopg2cffi = ["psycopg2cffi"]
+pymysql = ["pymysql (<1)", "pymysql"]
+
+[[package]]
+name = "sqlalchemy-stubs"
+version = "0.4"
+description = "SQLAlchemy stubs and mypy plugin"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+mypy = ">=0.790"
+typing-extensions = ">=3.7.4"
+
+[[package]]
+name = "sqlalchemy2-stubs"
+version = "0.0.1a4"
+description = "Typing Stubs for SQLAlchemy 1.4"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+mypy = ">=0.790"
+typing-extensions = ">=3.7.4"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.1"
 description = "A non-validating SQL parser."
@@ -1458,7 +1528,7 @@ test = ["pytest"]
 name = "typed-ast"
 version = "1.4.2"
 description = "a fork of Python 2 and 3 ast modules with type comment support"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1595,6 +1665,17 @@ pygments = ">=2.4,<3.0"
 typing_extensions = ">=3.6,<4.0"
 
 [[package]]
+name = "win32-setctime"
+version = "1.0.3"
+description = "A small Python utility to set file creation time on Windows"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
+
+[[package]]
 name = "wrapt"
 version = "1.12.1"
 description = "Module for decorators, wrappers and monkey patching."
@@ -1613,7 +1694,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "61f70bae48fffb366b20d5cc21f956f3a65e3dc5dd0d06b475cdecb6852ba8bd"
+content-hash = "c2229665fdb1bcabb1b332e671103e576826632e8c34c6249e78ed931a66d551"
 
 [metadata.files]
 appdirs = [
@@ -2058,6 +2139,10 @@ litecli = [
     {file = "litecli-1.6.0-py2.py3-none-any.whl", hash = "sha256:fa716dff5dae3db83580d24446b6891d85e1d7797f2705ff107fe38139c44030"},
     {file = "litecli-1.6.0.tar.gz", hash = "sha256:4d274e1475b4d3bb32384838830bc4a8388992b7cb8119aa8cffc7ffaa0167f9"},
 ]
+loguru = [
+    {file = "loguru-0.5.3-py3-none-any.whl", hash = "sha256:f8087ac396b5ee5f67c963b495d615ebbceac2796379599820e324419d53667c"},
+    {file = "loguru-0.5.3.tar.gz", hash = "sha256:b28e72ac7a98be3d28ad28570299a393dfcd32e5e3f6a353dec94675767b6319"},
+]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
     {file = "MarkupSafe-1.1.1-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7"},
@@ -2476,6 +2561,49 @@ sortedcontainers = [
     {file = "sortedcontainers-2.3.0-py2.py3-none-any.whl", hash = "sha256:37257a32add0a3ee490bb170b599e93095eed89a55da91fa9f48753ea12fd73f"},
     {file = "sortedcontainers-2.3.0.tar.gz", hash = "sha256:59cc937650cf60d677c16775597c89a960658a09cf7c1a668f86e1e4464b10a1"},
 ]
+sqlalchemy = [
+    {file = "SQLAlchemy-1.4.2-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:aed22be55a608787bb6875dbcf3561349a0e88fe33fd88c318c1e5b4eeb2306a"},
+    {file = "SQLAlchemy-1.4.2-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:7e1b0ed6d720750f02333d2f52502dfc2a23185aacc2cc6ce6ec29d28c21397c"},
+    {file = "SQLAlchemy-1.4.2-cp27-cp27m-win32.whl", hash = "sha256:9406b96a979ab8d6de5d89f58b1f103c9aeef6fb5367448537a8228619f11258"},
+    {file = "SQLAlchemy-1.4.2-cp27-cp27m-win_amd64.whl", hash = "sha256:59ec279f1bd55e1d703e3d4b651600cc463cc3eafa8d8e5a70ab844f736348d4"},
+    {file = "SQLAlchemy-1.4.2-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:8cfcfcf2582b19c874fa20d0b75100abe17be80a4c637c0683b4eb919946dfee"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:a6b4b7688fe7d251bbae3f9da4a487568bd584d13201bc7591c8639ad01fecdc"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:0abab6d1044198993256f073340b14c459736777c550a7e914cd00444dcf9c30"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:5fb8f6a391992dd6aafe4fdf1dffbf7934fba1f5938593f20b152aa7f9619f82"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:97e333260a99d989f2a131aa8aa74140636dfbd030987150cb3748da607ea7db"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:3fa75c854dba3f9b9c28bc5d88d246f6bc6f20b7480367c65339bcb2864d4707"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-win32.whl", hash = "sha256:1b9f3c7b281aa1c3d0c74ef12c4633e5f8358bb94f01be7b964887183fd53e5e"},
+    {file = "SQLAlchemy-1.4.2-cp36-cp36m-win_amd64.whl", hash = "sha256:da72e3499bde4548e8b7d7f2ab23ceed09a5bac307bf51057e066c406a0ba2e1"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:8383292298bb85d7ad79a13c6571aff213b96c49737f3c3af129de63bbfb42c9"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:4d1447183356c9679853926e81c7ebce3fbca9b1c607ea439975298c72137a36"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:ff76d7dbf33f62e30e5a1d1b095d46afcdc49e42cbe33ce12014110147466700"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:1ba6922331b3f38e116c9266206b044baf64576e5cebd87917b5ad872d7a025f"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:d3b2819f4d7ae56191efc6fc456eb1805ada2bd5ba93d918893bc24fa7a1e30c"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-win32.whl", hash = "sha256:3b290ff34de625143a05d2d172a88a064bb04a7938265b09d4e4bf45f21948f6"},
+    {file = "SQLAlchemy-1.4.2-cp37-cp37m-win_amd64.whl", hash = "sha256:5289cafee71037f15feeeaf736f01910b9e3572525b73b201bdd21816db010ed"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:0bb04fd7414718fb1f4dfa17efcb0be787363451cf99a5e992728925d298d9ae"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:4e88549a5e58ba8c80c5ea071ac3b4e590236672a882bb80f56da4afcee45d96"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:edec945ed57d11a1123657e4066f0bf747aaa93c8a65ec1c2c98172d1f2a9b7d"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:06125670280111e39014af87f14d74599fd4b39a512c74f1a10e21e5626eb158"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:e1692bdf1b95c97caab1201773a4576f59627997f598d30bdadc50dd9f897fec"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-win32.whl", hash = "sha256:65c4df9517da9cce2c1255282d3e39f2afbc3a02deba60d99b0a3283ae80ec0b"},
+    {file = "SQLAlchemy-1.4.2-cp38-cp38-win_amd64.whl", hash = "sha256:c6197c88ad53c31f58de5a8180936b8ef027356e788cd5f6514b3439d3d897ac"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:6d6115edf1297bfa58994986ffe0dff21af18f0cba51dfa6d1769aa8a277be32"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:facacaea95e0822f7bbeaa6909b30b2836b14cff8790209d52a0c866e240b673"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:6e517126d3bc13d455826befdc35a89f82f01d163848f68db02caa80d25433fc"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:09b08eb1bea621e47c2b0fcb0334fcbb00e1da2a3c2d45a98e56cd072b840719"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:7eba42098a13a3bcd509080b5e44d73783d9129ba0383793979bf518d01e8bb3"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-win32.whl", hash = "sha256:920db115eb06fc507fe2c774fb5c82a898b05dffbdadc7fafad51ce2cfd8c549"},
+    {file = "SQLAlchemy-1.4.2-cp39-cp39-win_amd64.whl", hash = "sha256:dcde5067a7dab1ff2eaea2f3622b2055c5225ce2aaf589c5a4c703d43519c4ba"},
+    {file = "SQLAlchemy-1.4.2.tar.gz", hash = "sha256:6a8e4c2e65028933a6dc8643c8f5a4f295a367131195b3c708634925cb3e8ec1"},
+]
+sqlalchemy-stubs = [
+    {file = "sqlalchemy-stubs-0.4.tar.gz", hash = "sha256:c665d6dd4482ef642f01027fa06c3d5e91befabb219dc71fc2a09e7d7695f7ae"},
+    {file = "sqlalchemy_stubs-0.4-py3-none-any.whl", hash = "sha256:5eec7aa110adf9b957b631799a72fef396b23ff99fe296df726645d01e312aa5"},
+]
+sqlalchemy2-stubs = [
+    {file = "sqlalchemy2-stubs-0.0.1a4.tar.gz", hash = "sha256:821d48cba522d151419e0abff63c348eb9e9312a0758171c57ca34d68f4e0280"},
+]
 sqlparse = [
     {file = "sqlparse-0.4.1-py3-none-any.whl", hash = "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0"},
     {file = "sqlparse-0.4.1.tar.gz", hash = "sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8"},
@@ -2642,6 +2770,10 @@ websocket-client = [
 wemake-python-styleguide = [
     {file = "wemake-python-styleguide-0.15.2.tar.gz", hash = "sha256:46663b3d3ad7f726bd57635fa0333ef1051e23f5c180fe8f8749d7dae8e89a19"},
     {file = "wemake_python_styleguide-0.15.2-py3-none-any.whl", hash = "sha256:1987f867de70e8cf0fad1fdabb2986a5a9ee0c63e773aceb2c751aa85434d2fa"},
+]
+win32-setctime = [
+    {file = "win32_setctime-1.0.3-py3-none-any.whl", hash = "sha256:dc925662de0a6eb987f0b01f599c01a8236cb8c62831c22d9cada09ad958243e"},
+    {file = "win32_setctime-1.0.3.tar.gz", hash = "sha256:4e88556c32fdf47f64165a2180ba4552f8bb32c1103a2fafd05723a0bd42bd4b"},
 ]
 wrapt = [
     {file = "wrapt-1.12.1.tar.gz", hash = "sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"},

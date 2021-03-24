@@ -14,6 +14,9 @@ PyYAML = "^5.4.1"
 litecli = "^1.6.0"
 hypothesis = {extras = ["codemods"], version = "^6.8.1"}
 pydantic = "^1.8.1"
+SQLAlchemy = {extras = ["mypy"], version = "^1.4.2"}
+sqlalchemy-stubs = "^0.4"
+loguru = "^0.5.3"
 
 [tool.poetry.scripts]
 reddmind = "reddmind.__main__:app"

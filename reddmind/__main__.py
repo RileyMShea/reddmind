@@ -1,10 +1,19 @@
 import sys
+from enum import Enum
 
 import typer
 from dependency_injector.wiring import Provide, inject
 
+
 from .containers import Container
 from .listers import MovieLister
+
+
+
+class FinderType(str, Enum):
+    csv = "csv"
+    sqlite = "sqlite"
+    orm_sqlite = "orm_sqlite"
 
 
 @inject
@@ -24,7 +33,6 @@ app = typer.Typer()
 container = Container()
 container.config.from_yaml("config.yml")
 container.wire(modules=[sys.modules[__name__]])
-# container.config.finder.type.from_env('MOVIE_FINDER_TYPE')
 
 
 @app.callback()
@@ -35,7 +43,7 @@ def callback() -> None:
 
 
 @app.command()
-def movies(finder_type: str, stuff:bool=True) -> None:
+def movies(finder_type: FinderType, stuff: bool = True) -> None:
     """
     Show movies in database
     """
@@ -43,17 +51,5 @@ def movies(finder_type: str, stuff:bool=True) -> None:
     main()
 
 
-@app.command()
-def shoot() -> None:
-    """
-    Shoot the portal gun
-    """
-    typer.echo("Shooting portal gun")
-
-
 if __name__ == "__main__":
-    movies("csv")
-    # container = Container()
-    # container.config.from_yaml("config.yml")
-    # container.wire(modules=[sys.modules[__name__]])
-    # main()
+    movies(FinderType.orm_sqlite)
