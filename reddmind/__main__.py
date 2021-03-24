@@ -24,6 +24,8 @@ app = typer.Typer()
 container = Container()
 container.config.from_yaml("config.yml")
 container.wire(modules=[sys.modules[__name__]])
+# container.config.finder.type.from_env('MOVIE_FINDER_TYPE')
+
 
 @app.callback()
 def callback() -> None:
@@ -33,10 +35,11 @@ def callback() -> None:
 
 
 @app.command()
-def movies() -> None:
+def movies(finder_type: str, stuff:bool=True) -> None:
     """
     Show movies in database
     """
+    container.config.finder.type.override(finder_type)
     main()
 
 
@@ -49,7 +52,8 @@ def shoot() -> None:
 
 
 if __name__ == "__main__":
-    container = Container()
-    container.config.from_yaml("config.yml")
-    container.wire(modules=[sys.modules[__name__]])
-    main()
+    movies("csv")
+    # container = Container()
+    # container.config.from_yaml("config.yml")
+    # container.wire(modules=[sys.modules[__name__]])
+    # main()
