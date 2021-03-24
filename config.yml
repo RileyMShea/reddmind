@@ -1,0 +1,7 @@
+finder:
+  csv:
+    path: 'data/movies.csv'
+    delimiter: ','
+
+  sqlite:
+    path: 'data/movies.db'

@@ -1,5 +1,8 @@
 {
     "python.linting.flake8Enabled": true,
+    "python.testing.pytestEnabled": true,
+    "python.analysis.typeCheckingMode": "off",
+    "python.linting.mypyEnabled": true,
     "python.linting.flake8Args": [
         "--ignore",
         "D104",
